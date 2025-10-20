@@ -27,6 +27,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterchain(HttpSecurity http, JwtFilter jwtFilter) throws Exception{
         http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors->cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/auth/**").permitAll()
                         .anyRequest().authenticated()

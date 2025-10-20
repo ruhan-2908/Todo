@@ -9,8 +9,25 @@ function login() {
 
 // Register page logic
 function register() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
+
+    fetch(`${SERVER_URL}/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type":"application/json"},
+        body:JSON.stringify({email,password})
+})
+.then(response=>{
+    if(response.ok)
+    {
+        alert("Registration successful! Please log in.");
+        window.location.href = "login.html";
+    }else {
+        return response.json().then(data => { throw new Error(data.message) || "Registration failed" )});
+  
 }
+
 
 // Todos page logic
 function createTodoCard(todo) {
