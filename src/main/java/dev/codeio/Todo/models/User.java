@@ -1,28 +1,23 @@
-package SpringBoot.sample.models;
-
+package dev.codeio.Todo.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Bean;
+import lombok.*;
 
 @Entity
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Table(name = "UserTable")
 public class User {
     @Id
     @GeneratedValue
-    Long id;
+    private long id;
     @Email
-    String email;
-    String password;
+    private String email;
+    private String password;
 }

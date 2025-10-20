@@ -1,10 +1,10 @@
-package SpringBoot.sample;
+package dev.codeio.Todo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SampleApplicationTests {
+class TodoApplicationTests {
 
 	@Test
 	void contextLoads() {
