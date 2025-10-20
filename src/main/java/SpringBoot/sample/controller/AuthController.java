@@ -12,15 +12,13 @@ import org.springframework.data.repository.config.RepositoryBeanDefinitionParser
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/auth")
 public class AuthController {
     private final UserService userService;
     private final UserRepository userRepository;
@@ -31,7 +29,7 @@ public class AuthController {
     {
         String email = body.get("email");
         String password = body.get("password");
-
+        password = passwordEncoder.encode(password);
         if(userRepository.findByEmail(email).isPresent())
         {
             return new ResponseEntity<>("Email already exits",HttpStatus.CONFLICT);
@@ -56,6 +54,6 @@ public class AuthController {
             return new ResponseEntity<>("Invalid User",HttpStatus.UNAUTHORIZED);
         }
         String token = jwtUtil.generateToken(email);
-        return ResponseEntity.ok(Map.of("token",token));
+        return ResponseEntity.ok(Map.of("token",token).toString());
     }
 }

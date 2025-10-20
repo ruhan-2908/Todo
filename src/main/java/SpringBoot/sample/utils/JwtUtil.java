@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-    private final String SECRET= "RUHAN K.B.";
+    private final String SECRET= "RUHAN K.B. is a student at PSG college of technology , undergoing B.E. Degree 2nd year and he is working in the todo backend";
     private final long EXPIRATION = 1000 * 60;
     private final Key secretKey = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
 
